@@ -8,7 +8,7 @@ public partial class Form1 : Form
 
     private Graphics g;
 
-    private int SZ = 10;
+    private int SZ = 5;
 
     private int RectX;
     private int RectY;
