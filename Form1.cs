@@ -24,11 +24,7 @@ public partial class Form1 : Form
         RectX = pictureBox1.Width / SZ;
         RectY = pictureBox1.Height / SZ;
 
-        Screen = new int[RectX, RectY];
-
-        pictureBox1.Image = new Bitmap(Width, Height);
-
-        g = Graphics.FromImage(pictureBox1.Image);
+        LoadPicture();
     }
 
     private void timer1_Tick(object sender, EventArgs e)
@@ -43,12 +39,12 @@ public partial class Form1 : Form
                     continue;
                 }
                
-                if(rotate == true)
+                if(rotate) //Поворот по часовой стрелке
                 {
                     (Screen[x, y], Screen[x + 1, y], Screen[x + 1, y + 1], Screen[x, y + 1]) = 
                         (Screen[x + 1, y], Screen[x + 1, y + 1], Screen[x, y + 1], Screen[x, y]);
                 }
-                else
+                else       //Поворот против часовой стрелки
                 {
                     (Screen[x, y], Screen[x, y + 1], Screen[x + 1, y + 1], Screen[x + 1, y]) = 
                         (Screen[x, y + 1], Screen[x + 1, y + 1], Screen[x + 1, y], Screen[x, y]);
@@ -129,6 +125,21 @@ public partial class Form1 : Form
             Timer.Interval = int.Parse(textBox1.Text); 
         }
         catch { }
+    }
+
+    private void button4_Click(object sender, EventArgs e)
+    {
+        Timer.Stop();
+        LoadPicture();
+    }
+
+    private void LoadPicture()
+    {
+        Screen = new int[RectX, RectY];
+
+        pictureBox1.Image = new Bitmap(Width, Height);
+
+        g = Graphics.FromImage(pictureBox1.Image);
     }
 }
 
